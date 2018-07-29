@@ -315,4 +315,55 @@ RCT_EXPORT_METHOD(getDeviceId:(RCTPromiseResolveBlock)resolve
     resolve([CloudPushSDK getDeviceId]);
 }
 
+RCT_EXPORT_METHOD(bindAccount:(NSString *)account
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject) {
+    [CloudPushSDK bindAccount:accound withCallback:^(CloudPushCallbackResult *res) {
+        // 发送事件 CCPDidRegisterForRemoteNotificationsWithDeviceToken
+        if (res.success) {
+            resolve(@"ok");
+        } else {
+            reject([NSString stringWithFormat:@"error: %@", res.error]);
+        }
+    }]
+}
+
+RCT_EXPORT_METHOD(unbindAccount:(RCTPromiseResolveBlock)resolve
+                 reject:(RCTPromiseRejectBlock)reject) {
+   [CloudPushSDK unbindAccount:accound withCallback:^(CloudPushCallbackResult *res) {
+       // 发送事件 CCPDidRegisterForRemoteNotificationsWithDeviceToken
+       if (res.success) {
+           resolve(@"ok");
+       } else {
+           reject([NSString stringWithFormat:@"error: %@", res.error]);
+       }
+   }]
+}
+
+RCT_EXPORT_METHOD(bindTag:(NSArray *)tags
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject) {
+    [CloudPushSDK bindTag:2 withTags:tags withAlias:nil withCallback:^(CloudPushCallbackResult *res) {
+        // 发送事件 CCPDidRegisterForRemoteNotificationsWithDeviceToken
+        if (res.success) {
+            resolve(@"ok");
+        } else {
+            reject([NSString stringWithFormat:@"error: %@", res.error]);
+        }
+    }]
+}
+
+RCT_EXPORT_METHOD(unbindTag:(NSArray *)tags
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject) {
+    [CloudPushSDK unbindTag:tags withAlias:nil withCallback:^(CloudPushCallbackResult *res) {
+        // 发送事件 CCPDidRegisterForRemoteNotificationsWithDeviceToken
+        if (res.success) {
+            resolve(@"ok");
+        } else {
+            reject([NSString stringWithFormat:@"error: %@", res.error]);
+        }
+    }]
+}
+
 @end

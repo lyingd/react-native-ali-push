@@ -84,6 +84,85 @@ public class RNAlipush extends ReactContextBaseJavaModule {
     }
 
     /**
+     * 绑定账号
+     */
+    @ReactMethod
+    public void bindAccount(String account, final Promise promise) {
+        final CloudPushService pushService = PushServiceFactory.getCloudPushService();
+        pushService.bindAccount(account, new CommonCallback() {
+            @Override
+            public void onSuccess(String s) {
+                promise.resolve(s);
+            }
+
+            @Override
+            public void onFailed(String s, String s1) {
+                promise.reject("errorCode:" + s + ", errorMsg:" + s1);
+            }
+        });
+    }
+
+    /**
+     * 解绑账号
+     */
+    @ReactMethod
+    public void unbindAccount(final Promise promise) {
+        final CloudPushService pushService = PushServiceFactory.getCloudPushService();
+        pushService.unbindAccount(new CommonCallback() {
+            @Override
+            public void onSuccess(String s) {
+                promise.resolve(s);
+            }
+
+            @Override
+            public void onFailed(String s, String s1) {
+                promise.reject("errorCode:" + s + ", errorMsg:" + s1);
+            }
+        });
+    }
+
+    /**
+     * 添加标签
+     */
+    @ReactMethod
+    public void bindTag(String tag, final Promise promise) {
+        final CloudPushService pushService = PushServiceFactory.getCloudPushService();
+        pushService.bindTag(CloudPushService.DEVICE_TARGET, new String[]{tag}, null, new CommonCallback() {
+
+            @Override
+            public void onSuccess(String s) {
+                promise.resolve(s);
+            }
+
+            @Override
+            public void onFailed(String s, String s1) {
+                promise.reject("errorCode:" + s + ", errorMsg:" + s1);
+            }
+        });
+    }
+
+    /**
+     * 删除标签
+     */
+    @ReactMethod
+    public void unbindTag(String tag, final Promise promise) {
+        final CloudPushService pushService = PushServiceFactory.getCloudPushService();
+        pushService.unbindTag(CloudPushService.DEVICE_TARGET, new String[]{tag}, null, new CommonCallback() {
+
+            @Override
+            public void onSuccess(String s) {
+                promise.resolve(s);
+            }
+
+            @Override
+            public void onFailed(String s, String s1) {
+                promise.reject("errorCode:" + s + ", errorMsg:" + s1);
+            }
+        });
+    }
+
+
+    /**
      * 打开调试模式
      */
     @ReactMethod
