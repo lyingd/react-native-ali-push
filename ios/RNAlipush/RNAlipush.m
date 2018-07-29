@@ -318,52 +318,48 @@ RCT_EXPORT_METHOD(getDeviceId:(RCTPromiseResolveBlock)resolve
 RCT_EXPORT_METHOD(bindAccount:(NSString *)account
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {
-    [CloudPushSDK bindAccount:accound withCallback:^(CloudPushCallbackResult *res) {
-        // 发送事件 CCPDidRegisterForRemoteNotificationsWithDeviceToken
+    [CloudPushSDK bindAccount:account withCallback:^(CloudPushCallbackResult *res) {
         if (res.success) {
-            resolve(@"ok");
+            resolve(res.data);
         } else {
-            reject([NSString stringWithFormat:@"error: %@", res.error]);
+            reject([NSString stringWithFormat:@"%lld", res.error.code], res.error.description, res.error);
         }
-    }]
+    }];
 }
 
 RCT_EXPORT_METHOD(unbindAccount:(RCTPromiseResolveBlock)resolve
                  reject:(RCTPromiseRejectBlock)reject) {
-   [CloudPushSDK unbindAccount:accound withCallback:^(CloudPushCallbackResult *res) {
-       // 发送事件 CCPDidRegisterForRemoteNotificationsWithDeviceToken
+   [CloudPushSDK unbindAccount:^(CloudPushCallbackResult *res) {
        if (res.success) {
-           resolve(@"ok");
+           resolve(res.data);
        } else {
-           reject([NSString stringWithFormat:@"error: %@", res.error]);
+           reject([NSString stringWithFormat:@"%lld", res.error.code], res.error.description, res.error);
        }
-   }]
+   }];
 }
 
 RCT_EXPORT_METHOD(bindTag:(NSArray *)tags
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {
     [CloudPushSDK bindTag:2 withTags:tags withAlias:nil withCallback:^(CloudPushCallbackResult *res) {
-        // 发送事件 CCPDidRegisterForRemoteNotificationsWithDeviceToken
         if (res.success) {
-            resolve(@"ok");
+            resolve(res.data);
         } else {
-            reject([NSString stringWithFormat:@"error: %@", res.error]);
+            reject([NSString stringWithFormat:@"%lld", res.error.code], res.error.description, res.error);
         }
-    }]
+    }];
 }
 
 RCT_EXPORT_METHOD(unbindTag:(NSArray *)tags
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {
-    [CloudPushSDK unbindTag:tags withAlias:nil withCallback:^(CloudPushCallbackResult *res) {
-        // 发送事件 CCPDidRegisterForRemoteNotificationsWithDeviceToken
+    [CloudPushSDK unbindTag:2 withTags:tags withAlias:nil withCallback:^(CloudPushCallbackResult *res) {
         if (res.success) {
-            resolve(@"ok");
+            resolve(res.data);
         } else {
-            reject([NSString stringWithFormat:@"error: %@", res.error]);
+            reject([NSString stringWithFormat:@"%lld", res.error.code], res.error.description, res.error);
         }
-    }]
+    }];
 }
 
 @end
