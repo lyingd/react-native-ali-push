@@ -322,7 +322,7 @@ RCT_EXPORT_METHOD(bindAccount:(NSString *)account
         if (res.success) {
             resolve(res.data);
         } else {
-            reject([NSString stringWithFormat:@"%lld", res.error.code], res.error.description, res.error);
+            reject([NSString stringWithFormat:@"%ld", res.error.code], res.error.description, res.error);
         }
     }];
 }
@@ -333,7 +333,7 @@ RCT_EXPORT_METHOD(unbindAccount:(RCTPromiseResolveBlock)resolve
        if (res.success) {
            resolve(res.data);
        } else {
-           reject([NSString stringWithFormat:@"%lld", res.error.code], res.error.description, res.error);
+           reject([NSString stringWithFormat:@"%ld", res.error.code], res.error.description, res.error);
        }
    }];
 }
@@ -345,7 +345,7 @@ RCT_EXPORT_METHOD(bindTag:(NSArray *)tags
         if (res.success) {
             resolve(res.data);
         } else {
-            reject([NSString stringWithFormat:@"%lld", res.error.code], res.error.description, res.error);
+            reject([NSString stringWithFormat:@"%ld", res.error.code], res.error.description, res.error);
         }
     }];
 }
@@ -357,7 +357,7 @@ RCT_EXPORT_METHOD(unbindTag:(NSArray *)tags
         if (res.success) {
             resolve(res.data);
         } else {
-            reject([NSString stringWithFormat:@"%lld", res.error.code], res.error.description, res.error);
+            reject([NSString stringWithFormat:@"%ld", res.error.code], res.error.description, res.error);
         }
     }];
 }
