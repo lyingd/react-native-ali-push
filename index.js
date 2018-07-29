@@ -30,6 +30,38 @@ export default class Alipush {
 
   /**
    * android && ios
+   * 绑定账号。直接返回一个promise
+   */
+  static bindAccount(account) {
+    return RNAlipush.bindAccount(account);
+  }
+
+  /**
+   * android && ios
+   * 解绑定账号。直接返回一个promise
+   */
+  static unbindAccount() {
+    return RNAlipush.unbindAccount();
+  }
+
+  /**
+   * android && ios
+   * 绑定标签。直接返回一个promise
+   */
+  static bindTags(tags) {
+    return RNAlipush.bindTags(tags);
+  }
+
+  /**
+   * android && ios
+   * 解绑定标签。直接返回一个promise
+   */
+  static unbindTags(tags) {
+    return RNAlipush.unbindTags(tags);
+  }
+
+  /**
+   * android && ios
    * 开启调试模式
    */
   static turnOnDebug() {
